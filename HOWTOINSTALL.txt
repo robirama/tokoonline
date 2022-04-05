@@ -1,0 +1,28 @@
+System Requirements:
+- Database MySQL
+- Framework Laravel
+- Xampp / PHP 7.4
+
+Panduan Instalasi :
+1. Download dan Instal Aplikasi Xampp dan Composer di Komputer.
+2. Ekstrak file menggunakan aplikasi WinRAR.
+3. Copy folder laravel-laravel-e-commerce, lalu paste ke folder htdocs.
+4. Aktifkan Apache dan MySQL pada Xampp.
+5. Buka browser, lalu buka alamat localhost/phpMyAdmin.
+6. Buat database baru dengan nama laravel_shoponline.
+7. Import database aplikasi ke dalam database laravel_shoponline.
+8. Buka terminal di dalam project, ketikan php artisan serve.
+9. Jalankan project dengan ketik http://127.0.0.1:8000/.
+10. Login dengan email : sheptian@gmail.com, Password : komputer1.
+11. Selesai.
+
+Fitur Aplikasi :
+- Login Multi User
+- Katalog Produk
+- Kategori Produk
+- Keranjang Belanja
+- Halaman Checkout
+- Konfirmasi Pembayaran
+- List Orderan
+- LogOut
+- dan lainnya.
