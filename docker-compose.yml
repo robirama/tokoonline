@@ -1,0 +1,52 @@
+version: '3'
+services:
+  nginx-tokoonline:
+    build:
+      context: ./
+      dockerfile: ./docker-config/nginx/web.dockerfile
+    container_name: nginx-tokoonline
+    volumes:
+      - ./:/var/www/public
+    ports:
+      - "80:80"
+    networks:
+      - tokoonline
+
+  tokoonline-php:
+    build:
+      context: ./
+      dockerfile: ./docker-config/php/php.dockerfile
+    container_name: php-tokoonline
+    volumes:
+      - ./:/var/www/public
+    networks:
+      - tokoonline
+    links:
+      - db-tokoonline
+    depends_on:
+      - db-tokoonline
+
+  db-tokoonline:
+    image: mariadb
+    container_name: db-tokoonline
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: tokoonlinedb
+      MYSQL_ROOT_PASSWORD: secret
+      SERVICE_NAME: mysql
+      SERVICE_TAGS: dev
+    volumes:
+      - dbdata:/var/lib/mysql/
+      - ./docker-config/mysql/db:/docker-entrypoint-initdb.d
+    networks:
+      - tokoonline
+
+networks:
+  tokoonline:
+    driver: bridge
+volumes:
+  dbdata:
+    driver: local
